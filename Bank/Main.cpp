@@ -7,7 +7,6 @@ using namespace std;
 
 //#include "Account.h"
 
-
 int main(int argc, const char * argv[])
 {
 	cout << "Welcome to our Bank !!!" << endl;
