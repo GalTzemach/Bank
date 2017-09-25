@@ -10,6 +10,10 @@ class Client;
 class Account
 {
 public:
+	static constexpr int YOUNG_TRANSACTION_PRICE = 0; // free
+	static constexpr int REGULAR_TRANSACTION_PRICE = 10; 
+	static constexpr int BUSINESS_TRANSACTION_PRICE = 5;
+
 	enum eType { YOUNG, REGULAR, BUSINESS };
 
 private:
@@ -40,9 +44,10 @@ public:
 	float checkBalance() const;
 	void deposit(float sum);
 	bool withraw(float sum);
-	bool transfer(float sum, const Account& toAccount);
+	bool transfer(float sum, Account& toAccount);
 	void savingPlain(float sum, int numberOfMonths);
 	bool loan(float sum, int numberOfMonths);
+
 };
 
 #endif //__ACCOUNT_H

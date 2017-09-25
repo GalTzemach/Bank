@@ -6,15 +6,18 @@
 class WorkerClient : public Worker, public Client
 {
 private:
-	float discountPercent;
+	float discountPercent = DISCOUNT_PERCENT;
 
 public:
-	WorkerClient(char * name, int id, time_t birthDay, time_t startDay, Address address, eType type = eType::REGULAR, bool isActive = true);
+	static constexpr float DISCOUNT_PERCENT = 5;
+
+	WorkerClient(char *name, int id, time_t birthDay, Address address, eType type = eType::REGULAR, bool isActive = true);
 	//WorkerClient(const WorkerClient& other);
 	//~WorkerClient();
 
 	// Getters & Setters
 	float getDiscountPercent() const;
+	bool setDiscountPercent(float newDiscountPercent);
 
 	// Methods
 	void calculateDiscount();

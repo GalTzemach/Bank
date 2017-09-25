@@ -18,14 +18,15 @@ public:
 	// Getters & Setters
 	char* getName() const;
 	int getNumber() const;
-	Branch* getArrBranches() const;
-
 
 	// Methods
 	void paySalaries();
 	void payBonus();
 	bool addBranch(const Branch& branch);
 	bool removeBranch(int numberOfBranch);
+	void alertOnOverdraft();
+	void alertOnOverBalance();
+
 };
 
 #endif // __BANK_H

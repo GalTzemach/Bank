@@ -14,7 +14,7 @@ protected:
 	Account* arrAccounts;
 
 public:
-	Client(char * name, int id, time_t birthDay, time_t startDay, Address address, bool isActive = true);
+	Client(char *name, int id, time_t birthDay, Address address, bool isActive = true);
 	//Client(const Client& other);
 	//virtual v~Client();
 
@@ -24,6 +24,7 @@ public:
 	// Methods
 	bool addAccount(const Account& account);
 	bool removeAccount(int clientId);
+
 };
 
 #endif // __CLIENT_H

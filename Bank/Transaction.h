@@ -13,11 +13,11 @@ protected:
 	int TransactionID;
 	int clientID;
 	int accountNumber;
-	time_t date;
+	time_t date = time(0); // all transaction date get the current time
 	float sum;
 
 	// constructors
-	Transaction(int clientID, int accountNumber, float sum); // time = current time (time(0))
+	Transaction(int clientID, int accountNumber, float sum);
 
 public:
 	// distructor

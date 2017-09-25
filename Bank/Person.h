@@ -11,11 +11,11 @@ public:
 protected:
 	char* name;
 	int id;
-	time_t birthDay, startDay;
+	time_t birthDay, startDay = time(0);
 	Address address;
 	bool isActive;
 
-	Person(char * name, int id, time_t birthDay, Address address, bool isActive = true);
+	Person(char *name, int id, time_t birthDay, Address address, bool isActive = true);
 
 public:
 	Person(const Person& other);

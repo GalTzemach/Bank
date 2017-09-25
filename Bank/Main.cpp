@@ -23,15 +23,27 @@ int main(int argc, const char * argv[])
 	Branch jerusalemBranch(Address("Jerusalem", "yafo", 92, 9200092), 10, "Jerusalem");
 	Branch telAvivBranch(Address("Tel Aviv", "Alenbi", 64, 6400064), 20, "Tel Aviv");
 
-	/// change time
-	Client client1("Client 1", 111111111, time_t(), time_t(), Address("Jerusalem", "yafo", 93, 9300093));
-	Client client2("Client 2", 222222222, time_t(), time_t(), Address("Tel Aviv", "Alenbi", 65, 6500065));
+	
+	time_t temp = time(0);
 
-	Worker worker1("worker1", 10001, time_t(), time_t(), Address("Jerusalem", "yafo", 94, 9400094));
-	Worker worker2("worker2", 20001, time_t(), time_t(), Address("Tel Aviv", "Alenbi", 66, 6600066));
+	tm *date1 = localtime(&temp);
+	date1->tm_year = 91;
+	date1->tm_mon = 0;
+	date1->tm_mday = 1;
 
-	WorkerClient workerClient1("workerClient1", 10002, time_t(), time_t(), Address("Jerusalem", "yafo", 95, 9500095));
-	WorkerClient workerClient2("workerClient2", 20002, time_t(), time_t(), Address("Tel Aviv", "Alenbi", 67, 6700067));
+	tm *date2 = localtime(&temp);
+	date2->tm_year = 100;
+	date2->tm_mon = 0;
+	date2->tm_mday = 1;
+
+	Client client1("Client 1", 111111111, mktime(date1), Address("Jerusalem", "yafo", 93, 9300093));
+	Client client2("Client 2", 222222222, mktime(date2), Address("Tel Aviv", "Alenbi", 65, 6500065));
+
+	Worker worker1("worker1", 10001, mktime(date1), Address("Jerusalem", "yafo", 94, 9400094), 8000);
+	Worker worker2("worker2", 20001, mktime(date2), Address("Tel Aviv", "Alenbi", 66, 6600066), 12000);
+	
+	WorkerClient workerClient1("workerClient1", 10002, mktime(date1), Address("Jerusalem", "yafo", 95, 9500095));
+	WorkerClient workerClient2("workerClient2", 20002, mktime(date2), Address("Tel Aviv", "Alenbi", 67, 6700067));
 
 	Account account1(100);
 	Account account2(101);
@@ -56,14 +68,15 @@ int main(int argc, const char * argv[])
 
 	bank.paySalaries();
 	bank.payBonus();
+	bank.alertOnOverdraft();
+	bank.alertOnOverBalance();
 
-	client1.getArrAccounts.check
 
-	//Deposit* d = new Deposit(1, 2, 200);
-	//Withraw* w = new Withraw(1, 2, 200);
-	//Transfer* t = new Transfer(1, 2, 500, 7);
+	account1.checkBalance();
+	account2.deposit(300);
+	account3.withraw(200);
+	account4.transfer(600, account2); // same branch
 
 	system("pause");
 
 } // end main
-

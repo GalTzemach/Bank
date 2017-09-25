@@ -37,7 +37,10 @@ public:
 	bool addAccount(const Account& account);
 	bool removeAccount(int numberAccount);
 	void paySalaries();
-	void payBonus();
+	void payBonus(); // bonus = PERCENT_OF_THE_SALARY % of the salary.
+	void alertOnOverdraft();
+	void alertOnOverBalance();
+
 };
 
 #endif // __BRANCH_H
