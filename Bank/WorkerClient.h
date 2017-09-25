@@ -9,7 +9,7 @@ private:
 	float discountPercent;
 
 public:
-	WorkerClient(char * name, int id, time_t birthDay, time_t startDay, Address address, eType type, bool isActive = true);
+	WorkerClient(char * name, int id, time_t birthDay, time_t startDay, Address address, eType type = eType::REGULAR, bool isActive = true);
 	//WorkerClient(const WorkerClient& other);
 	//~WorkerClient();
 

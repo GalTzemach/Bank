@@ -13,7 +13,7 @@ protected:
 	eType type;
 
 public:
-	Worker(char * name, int id, time_t birthDay, time_t startDay, Address address, eType type, bool isActive = true);
+	Worker(char * name, int id, time_t birthDay, time_t startDay, Address address, eType type = eType::REGULAR, bool isActive = true);
 
 	// Getters & Setters
 	float getCurrentSalary() const;

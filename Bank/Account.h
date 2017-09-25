@@ -4,6 +4,9 @@
 #include <ctime>
 #include "Client.h"
 
+// forward declaration
+class Client;
+
 class Account
 {
 public:
@@ -16,7 +19,7 @@ private:
 	time_t start;
 	time_t end;
 
-	///Client* arrClients;
+	Client* arrClients;
 
 public:
 	Account(int number, eType type = eType::REGULAR, float balance = 0);
@@ -32,8 +35,8 @@ public:
 	time_t getEnd() const;
 
 	// Methods
-	///bool addClient(const Client client);
-	///bool removeClient(const Client client);
+	bool addClient(const Client client);
+	bool removeClient(const Client client);
 	float checkBalance() const;
 	void deposit(float sum);
 	bool withraw(float sum);

@@ -18,6 +18,8 @@ public:
 	// Getters & Setters
 	char* getName() const;
 	int getNumber() const;
+	Branch* getArrBranches() const;
+
 
 	// Methods
 	void paySalaries();

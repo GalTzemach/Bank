@@ -4,11 +4,13 @@
 #include "Person.h"
 #include "Account.h"
 
+/// forward declaration
+class Account;
+
 class Client : virtual public Person
 {
 
 protected:
-
 	Account* arrAccounts;
 
 public:
@@ -17,6 +19,7 @@ public:
 	//virtual v~Client();
 
 	// Getters & Setters
+	Account* getArrAccounts();
 
 	// Methods
 	bool addAccount(const Account& account);
