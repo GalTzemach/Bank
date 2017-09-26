@@ -2,7 +2,11 @@
 #define __ACCOUNT_H
 
 #include <ctime>
+#include <iostream>
+
 #include "Client.h"
+#include "Transaction.h"
+#include "MyDateTime.h"
 
 // forward declaration
 class Client;
@@ -10,44 +14,49 @@ class Client;
 class Account
 {
 public:
-	static constexpr int YOUNG_TRANSACTION_PRICE = 0; // free
-	static constexpr int REGULAR_TRANSACTION_PRICE = 10; 
-	static constexpr int BUSINESS_TRANSACTION_PRICE = 5;
+	static constexpr int MAX_NUM_OF_CLIENT = 10;
+	static constexpr int MAX_NUM_OF_TRANSACTIONS = 1000;
+	static constexpr int MAX_OVERDRAFT = 10000;
 
-	enum eType { YOUNG, REGULAR, BUSINESS };
+	static constexpr int YOUNG_TRANSACTION_FEE = 0; // free
+	static constexpr int REGULAR_TRANSACTION_FEE = 10;
+	static constexpr int BUSINESS_TRANSACTION_FEE = 5;
 
-private:
-	int number;
-	eType type;
-	float balance;
-	time_t start;
-	time_t end;
+	enum eType {YOUNG, REGULAR, BUSINESS};
 
-	Client* arrClients;
 
-public:
-	Account(int number, eType type = eType::REGULAR, float balance = 0);
-	///copy c'tor & d'tor ?
+	Account(eType type = eType::REGULAR);
+
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Account& account);
 
 	// Getters & Setters
-	bool setType(const eType type);
+	int getNumber() const;
+	bool setType(eType type); // bool because regular or business can't became young again
 	eType getType() const;
 	bool setBalance(float sum);
 	float getBalance() const;
-	time_t getStart() const;
-	bool setEnd(time_t time);
-	time_t getEnd() const;
+	MyDateTime getStart() const;
 
 	// Methods
-	bool addClient(const Client client);
-	bool removeClient(const Client client);
 	float checkBalance() const;
+	bool addClient(const Client& client);
 	void deposit(float sum);
 	bool withraw(float sum);
 	bool transfer(float sum, Account& toAccount);
-	void savingPlain(float sum, int numberOfMonths);
-	bool loan(float sum, int numberOfMonths);
 
+private:
+	static int generateID;
+
+	int number; // number = ++generateID
+	eType type;
+	float balance;
+	MyDateTime start;
+	Client* arrClient[MAX_NUM_OF_CLIENT];
+	Transaction* arrTransactions[MAX_NUM_OF_TRANSACTIONS];
+	int numOfClient;
+	int numOfTransaction;
 };
+int Account::generateID = 0;
 
 #endif //__ACCOUNT_H

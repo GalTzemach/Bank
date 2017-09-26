@@ -11,11 +11,13 @@ public:
 	// constructors
 	Deposit(int clientID, int accountNumber, int sum);
 
-	// operators overloading
-	// friend ostream& operator<<(ostream& os, const Deposit& deposit);
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Deposit& deposit);
 
-	// methods
+	// Getters & Setters
 
-}; // end class Deposit
+	// Methods
+
+};
 
 #endif // __DEPOSIT_H

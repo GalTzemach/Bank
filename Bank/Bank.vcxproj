@@ -119,6 +119,7 @@
     <ClInclude Include="Bank.h" />
     <ClInclude Include="Branch.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="MyDateTime.h" />
     <ClInclude Include="Deposit.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Transaction.h" />

@@ -1,32 +1,38 @@
 #ifndef __BANK_H
 #define __BANK_H
 
+#include <iostream>
+
 #include "Branch.h"
 
 class Bank
 {
-private:
-	char* name;
-	int number;
-	Branch* arrBranches;
-
 public:
-	Bank(char *name, int number);
-	Bank(const Bank& other);
+	static constexpr int MAX_NUM_OF_BRANCHES = 10;
+
+	Bank(const char *name, int number);
+	Bank(const Bank& other) = delete;
 	~Bank();
 
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Bank& bank);
+
 	// Getters & Setters
-	char* getName() const;
+	const char* getName() const;
 	int getNumber() const;
 
 	// Methods
 	void paySalaries();
 	void payBonus();
-	bool addBranch(const Branch& branch);
-	bool removeBranch(int numberOfBranch);
 	void alertOnOverdraft();
 	void alertOnOverBalance();
-
+	bool addBranch(const Branch& branch);
+	
+private:
+	char* name;
+	int number;
+	Branch* arrBranches[MAX_NUM_OF_BRANCHES];
+	int numOfBranches;
 };
 
 #endif // __BANK_H

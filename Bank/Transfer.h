@@ -11,14 +11,16 @@ private:
 	int toAccountNumber;
 
 public:
-	// constructors
 	Transfer(int clientID, int accountNumber, int sum, int toAccountNumber);
 
-	// operators overloading
-	// friend ostream& operator<<(ostream& os, const Transfer& transfer);
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Transfer& transfer);
 
-	// methods
+	// Getters & Setters
+	int getToAccountNumber() const;
 
-}; // end class Transfer
+	// Methods
+
+};
 
 #endif // __TRANSFER_H

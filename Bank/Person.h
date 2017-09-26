@@ -1,33 +1,38 @@
 #ifndef __PERSON_H
 #define __PERSON_H
 
-#include "Address.h"
 #include <ctime>
+#include <iostream>
 
+#include "Address.h"
+#include "MyDateTime.h"
+
+// Abstract
 class Person
 {
-public:
-
 protected:
 	char* name;
 	int id;
-	time_t birthDay, startDay = time(0);
+	MyDateTime birthDay, startDay; // startDay = current date
 	Address address;
 	bool isActive;
 
-	Person(char *name, int id, time_t birthDay, Address address, bool isActive = true);
+	Person(const char* name, int id, const MyDateTime birthDay, const Address& address);
 
 public:
-	Person(const Person& other);
+	Person(const Person& other) = delete;
 	virtual ~Person();
 
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Person& person);
+
 	// Getters & Setters
-	bool setName(const char* const name);
-	const char* const getName() const;
+	bool setName(const char* name);
+	const char* getName() const;
 	int getId() const;
-	const time_t& getBirthDay() const;
-	const time_t& getStartDay() const;
-	bool setAddress(const Address& address);
+	const MyDateTime& getBirthDay() const;
+	const MyDateTime& getStartDay() const;
+	void setAddress(const Address& address);
 	const Address& getAddress() const;
 	void setIsActive(bool isActive);
 	bool getIsActive() const;

@@ -6,6 +6,7 @@ using namespace std;
 #include "Bank.h"
 #include "Branch.h"
 #include "Client.h"
+#include "MyDateTime.h"
 #include "Deposit.h"
 #include "Person.h"
 #include "Transaction.h"
@@ -20,35 +21,35 @@ int main(int argc, const char * argv[])
 
 	Bank bank("Israel Bank", 1);
 
-	Branch jerusalemBranch(Address("Jerusalem", "yafo", 92, 9200092), 10, "Jerusalem");
-	Branch telAvivBranch(Address("Tel Aviv", "Alenbi", 64, 6400064), 20, "Tel Aviv");
+	Branch jerusalemBranch("Jerusalem", Address("Jerusalem", "yafo", 92, 9200092));
+	Branch telAvivBranch("Tel Aviv", Address("Tel Aviv", "Alenbi", 64, 6400064));
+	bank.addBranch(telAvivBranch);
+	bank.addBranch(jerusalemBranch);
 
+	MyDateTime date1(1980, 1, 1, 0, 0, 0);
+	MyDateTime date2(1991, 1, 1, 0, 0, 0);
+	MyDateTime date3(1992, 1, 1, 0, 0, 0);
+	MyDateTime date4(1993, 1, 1, 0, 0, 0);
+
+	Client client1("Client1", 111111111, date1, Address("Jerusalem", "yafo", 93, 9300093));
+	Client client2("Client2", 222222222, date2, Address("Tel Aviv", "Alenbi", 65, 6500065));
+
+	Worker worker1("worker1", 333333333, date3, Address("Jerusalem", "yafo", 94, 9400094), 8000);
+	Worker worker2("worker2", 444444444, date4, Address("Tel Aviv", "Alenbi", 66, 6600066), 12000);
 	
-	time_t temp = time(0);
+	Worker worker3("worker3", 555555555, date1, Address("Jerusalem", "yafo", 95, 9500095), 10000);
+	Client client3("Client3", 666666666, date1, Address("Jerusalem", "yafo", 95, 9500095));
 
-	tm *date1 = localtime(&temp);
-	date1->tm_year = 91;
-	date1->tm_mon = 0;
-	date1->tm_mday = 1;
+	Worker worker4("worker3", 777777777, date2, Address("Tel Aviv", "Alenbi", 67, 6700067), 11000);
+	Client client4("Client3", 888888888, date2, Address("Tel Aviv", "Alenbi", 67, 67000067));
 
-	tm *date2 = localtime(&temp);
-	date2->tm_year = 100;
-	date2->tm_mon = 0;
-	date2->tm_mday = 1;
+	WorkerClient workerClient1(worker3, client3);
+	WorkerClient workerClient2(worker4, client4);
 
-	Client client1("Client 1", 111111111, mktime(date1), Address("Jerusalem", "yafo", 93, 9300093));
-	Client client2("Client 2", 222222222, mktime(date2), Address("Tel Aviv", "Alenbi", 65, 6500065));
-
-	Worker worker1("worker1", 10001, mktime(date1), Address("Jerusalem", "yafo", 94, 9400094), 8000);
-	Worker worker2("worker2", 20001, mktime(date2), Address("Tel Aviv", "Alenbi", 66, 6600066), 12000);
-	
-	WorkerClient workerClient1("workerClient1", 10002, mktime(date1), Address("Jerusalem", "yafo", 95, 9500095));
-	WorkerClient workerClient2("workerClient2", 20002, mktime(date2), Address("Tel Aviv", "Alenbi", 67, 6700067));
-
-	Account account1(100);
-	Account account2(101);
-	Account account3(102);
-	Account account4(103);
+	Account account1;
+	Account account2;
+	Account account3;
+	Account account4;
 
 	client1.addAccount(account1);
 	client2.addAccount(account2);
@@ -63,19 +64,17 @@ int main(int argc, const char * argv[])
 	telAvivBranch.addWorker(worker2);
 	telAvivBranch.addWorkerClient(workerClient2);
 
-	bank.addBranch(telAvivBranch);
-	bank.addBranch(jerusalemBranch);
-
 	bank.paySalaries();
 	bank.payBonus();
 	bank.alertOnOverdraft();
 	bank.alertOnOverBalance();
 
-
 	account1.checkBalance();
 	account2.deposit(300);
 	account3.withraw(200);
-	account4.transfer(600, account2); // same branch
+	account4.transfer(600, account2); // Same branch
+
+	cout << bank;
 
 	system("pause");
 

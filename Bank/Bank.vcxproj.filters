@@ -56,5 +56,8 @@
     <ClInclude Include="WorkerClient.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyDateTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

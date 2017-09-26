@@ -1,5 +1,7 @@
-#ifndef __ADDRESS_
-#define __ADDRESS_
+#ifndef __ADDRESS_H
+#define __ADDRESS_H
+
+#include <iostream>
 
 class Address
 {
@@ -8,15 +10,21 @@ private:
 	int number, zip;
 
 public:
-	Address(char* city, char* street, int number, int zip);
-	Address(const Address& address);
+	Address(const char* city, const char* street, int number, int zip);
+	Address(const Address& address) = delete;
 	~Address();
 
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Address& address);
+
 	// Getters & Setters
-	char* getCity() const;
-	char* getStreet() const;
+	const char* getCity() const;
+	const char* getStreet() const;
 	int getNumber() const;
 	int getZip() const;
+	
+	// Methods
+
 };
 
-#endif //__ADDRESS_
+#endif //__ADDRESS_H

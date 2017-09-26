@@ -3,32 +3,36 @@
 
 #include <ctime>
 #include <iostream>
+#include "MyDateTime.h"
 
-class Transaction // Abstract
+// Abstract
+class Transaction 
 {
-private:
+protected:
 	static int generateID;
 
-protected:
-	int TransactionID;
+	int TransactionID; 
 	int clientID;
 	int accountNumber;
-	time_t date = time(0); // all transaction date get the current time
+	MyDateTime date; // get the current time
 	float sum;
 
-	// constructors
 	Transaction(int clientID, int accountNumber, float sum);
 
 public:
-	// distructor
-	virtual ~Transaction();
 
-	// operators overloading
-	// friend ostream& operator<<(ostream& os, const Transaction& transaction);
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Transaction& transaction);
 
-	// methods
+	// Getters & Setters
+	int getTransactionId() const;
+	int getClientId() const;
+	int getAccountNumber() const;
+	const MyDateTime& getDate() const;
+	float getSum() const;
 
-}; // end class Transaction
+	// Methods
+};
 int Transaction::generateID = 0;
 
 #endif // __TRANSACTION_H

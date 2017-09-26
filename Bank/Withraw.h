@@ -8,14 +8,15 @@
 class Withraw : public Transaction
 {
 public:
-	// constructors
 	Withraw(int clientID, int accountNumber, int sum);
 
-	// operators overloading
-	// friend ostream& operator<<(ostream& os, const Withraw& withraw);
+	// Operators overloading
+	friend ostream& operator<<(ostream& os, const Withraw& withraw);
 
-	// methods
+	// Getters & Setters
 
-}; // end class Withraw
+	// Methods
+
+};
 
 #endif // __WITHRAW_H
